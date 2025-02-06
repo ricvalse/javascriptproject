@@ -275,10 +275,46 @@ footer a:hover {
   margin: 0 15px;
 }
 
+.checkout-btn {
+  background: linear-gradient(135deg, #ff7e00, #ff9900);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.checkout-btn:hover {
+  background: linear-gradient(135deg, #ff6600, #ff8800);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+.checkout-btn:active {
+  transform: translateY(1px);
+}
+#cart-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  background-color: #fff;
+  height: 100%;
+  border-left: 2px solid #ddd;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: none;
+  overflow-y: auto;
+  z-index: 100;
+}
 .cart-total {
   font-weight: bold;
   margin-top: 20px;
   font-size: 1.4rem;
+  text-align: center;
 }
 
 .cart-item-price {

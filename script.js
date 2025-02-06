@@ -219,3 +219,7 @@ document.querySelectorAll(".filter-btn").forEach((button) => {
     updateHeaderImage(category);
   });
 });
+
+document.getElementById("go-to-cart").addEventListener("click", () => {
+  window.location.href = "cart.html";
+});

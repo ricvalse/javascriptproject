@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7fc;
+      }
+      .cart-container {
+        max-width: 800px;
+        margin: 50px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+      }
+      .cart-item img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+      .cart-item-info {
+        flex: 1;
+        padding-left: 10px;
+      }
+      .cart-total {
+        font-size: 1.4rem;
+        font-weight: bold;
+        text-align: right;
+        margin-top: 20px;
+      }
+      .checkout-btn {
+        background-color: #ff9900;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 20px;
+        border-radius: 5px;
+      }
+      .checkout-btn:hover {
+        background-color: #f57c00;
+      }
+      .back-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        width: fit-content;
+        margin: 20px auto 0;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      }
+      .back-btn:hover {
+        background-color: #0056b3;
+      }
+      .back-btn svg {
+        margin-right: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cart-container">
+      <h2>Your Shopping Cart</h2>
+      <div id="cart-items"></div>
+      <div class="cart-total">Total: €<span id="cart-total">0.00</span></div>
+      <button class="checkout-btn">Proceed to Checkout</button>
+
+      <!-- Back Button -->
+      <a href="index.html" class="back-btn">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        Back to Home
+      </a>
+    </div>
+
+    <script>
+      function loadCart() {
+        const cartItemsContainer = document.getElementById("cart-items");
+        const cartTotal = document.getElementById("cart-total");
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cartItemsContainer.innerHTML = "";
+        let totalPrice = 0;
+        cart.forEach((item) => {
+          totalPrice += item.price * item.quantity;
+          const cartItemDiv = document.createElement("div");
+          cartItemDiv.classList.add("cart-item");
+          cartItemDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-info">
+                        <strong>${item.name}</strong>
+                        <p>€${item.price.toFixed(2)} x ${item.quantity}</p>
+                    </div>
+                `;
+          cartItemsContainer.appendChild(cartItemDiv);
+        });
+        cartTotal.textContent = totalPrice.toFixed(2);
+      }
+      document.addEventListener("DOMContentLoaded", loadCart);
+    </script>
+  </body>
+</html>
