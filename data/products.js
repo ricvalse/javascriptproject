@@ -6,6 +6,8 @@ const products = [
     image: "assets/images/1.jpeg",
     category: "electronics",
     inventory: 10,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 2,
@@ -14,6 +16,8 @@ const products = [
     image: "assets/images/2.jpeg",
     category: "accessories",
     inventory: 10,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 3,
@@ -22,6 +26,8 @@ const products = [
     image: "assets/images/3.jpeg",
     category: "clothing",
     inventory: 10,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 4,
@@ -30,6 +36,8 @@ const products = [
     image: "assets/images/4.jpeg",
     category: "electronics",
     inventory: 10,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 5,
@@ -38,6 +46,8 @@ const products = [
     image: "assets/images/5.jpeg",
     category: "accessories",
     inventory: 10,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 6,
@@ -46,6 +56,8 @@ const products = [
     image: "assets/images/6.jpeg",
     category: "electronics",
     inventory: 10,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 7,
@@ -54,6 +66,8 @@ const products = [
     image: "assets/images/7.jpeg",
     category: "accessories",
     inventory: 10,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 8,
@@ -62,6 +76,8 @@ const products = [
     image: "assets/images/8.jpeg",
     category: "clothing",
     inventory: 10,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 9,
@@ -70,6 +86,8 @@ const products = [
     image: "assets/images/9.jpeg",
     category: "electronics",
     inventory: 10,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
   {
     id: 10,
@@ -78,6 +96,8 @@ const products = [
     image: "assets/images/10.jpeg",
     category: "accessories",
     inventory: 10,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   },
 ];
 

@@ -20,6 +20,11 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=shopping_bag_speed"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=shopping_cart"
+    />
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.png" />
     <link rel="stylesheet" href="styles.css" />
     <!-- <style>
       
@@ -30,12 +35,19 @@
       <a href="index.html"
         ><img src="assets/images/web_logo.png" alt="logo"
       /></a>
-      <button id="cart-button">🛒 Cart (<span id="cart-count">0</span>)</button>
+      <button id="cart-button">
+        <span class="material-symbols-outlined"> shopping_cart </span> (<span
+          id="cart-count"
+          >0</span
+        >)
+      </button>
     </header>
 
     <div class="frontpage-image">
-      Discover Our Best Products!
-      <a href="#filters"><button class="frontbutton">Shop Now</button></a>
+      <p>Discover Our Best Products!</p>
+      <a style="padding-top: 50px" href="#filters"
+        ><button class="frontbutton">Shop Now</button></a
+      >
     </div>
 
     <main>
@@ -59,12 +71,12 @@
 
     <div id="cart-container">
       <div id="cart-header">
-        <h2>Your Cart</h2>
+        <h2>YOUR CART</h2>
         <button id="close-cart">✖</button>
       </div>
       <div id="cart-items"></div>
       <div class="cart-total">Total: €<span id="cart-total">0.00</span></div>
-      <button id="go-to-cart" class="checkout-btn">Go To Cart</button>
+      <button id="go-to-cart" class="checkout-btn">GO TO CART</button>
     </div>
 
     <footer>

@@ -124,7 +124,7 @@ function displayProducts(filteredProducts) {
               <p class="product-price">${product.price
                 .toString()
                 .replace(".", ",")} €</p>
-              <button class="view-details-btn"><span class="material-symbols-outlined">shopping_bag_speed</span></button>
+              <button class="view-details-btn"><span class="material-symbols-outlined">shopping_cart</span></button>
             </div>
         `;
 
