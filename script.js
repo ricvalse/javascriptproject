@@ -1,190 +1,221 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const productsContainer = document.getElementById("products-container");
-  const cartButton = document.getElementById("cart-button");
-  const cartPopup = document.getElementById("cart-popup");
-  const closeCartButton = document.getElementById("close-cart");
+import products from "./data/products.js";
+
+let cart = [];
+
+// Function to update the cart display
+// Function to update cart display from localStorage
+// Function to update cart display from localStorage
+function updateCartDisplay() {
   const cartItemsContainer = document.getElementById("cart-items");
   const cartTotal = document.getElementById("cart-total");
+  const cartCount = document.getElementById("cart-count");
+
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  let products = [];
 
-  // Fetch and load products
-  fetch("data/products.json")
-    .then(response => response.json())
-    .then(data => {
-      products = data;
-      displayProducts(products);
-      console.log("Products loaded:", products); // Debug log
-    })
-    .catch(error => console.error('Error loading products:', error));
+  cartItemsContainer.innerHTML = "";
+  let totalPrice = 0;
+  let totalItems = 0;
 
+  cart.forEach((item) => {
+    const itemTotal = item.price * item.quantity;
+    totalPrice += itemTotal;
+    totalItems += item.quantity;
 
-  function displayProducts(products) {
-    productsContainer.innerHTML = "";
-    products.forEach((product) => {
-      const productElement = document.createElement("div");
-      productElement.classList.add("product");
-      productElement.innerHTML = `
-                <a href="product.html?id=${product.id}" class="product-link">
-                <img src="${product.image}" alt="${product.name}">
-                <p>${product.name}</p>
-                <div class="price-and-cart">
-                <h3>${product.price.toString().replace(".", ",")} €</h3>
-                <a href="#" class="add-to-cart" data-id="${product.id}">
-                <span class="material-symbols-outlined">shopping_bag_speed</span></a>
-                </div>
-            `;
-      productsContainer.appendChild(productElement);
-    });
+    const cartItemDiv = document.createElement("div");
+    cartItemDiv.classList.add("cart-item");
+
+    cartItemDiv.innerHTML = `
+            <span class="cart-item-name">${item.name}</span>
+            <div>
+                <button class="quantity-btn decrease-btn" data-name="${
+                  item.name
+                }">-</button>
+                <span class="cart-item-quantity">${item.quantity}</span>
+                <button class="quantity-btn increase-btn" data-name="${
+                  item.name
+                }">+</button>
+            </div>
+            <span class="cart-item-price">€${itemTotal.toFixed(2)}</span>
+        `;
+
+    cartItemsContainer.appendChild(cartItemDiv);
+  });
+
+  cartTotal.textContent = totalPrice.toFixed(2);
+  cartCount.textContent = totalItems;
+
+  // Add event listeners to new buttons after DOM update
+  document.querySelectorAll(".increase-btn").forEach((button) => {
+    button.addEventListener("click", () =>
+      changeQuantity(button.dataset.name, 1)
+    );
+  });
+
+  document.querySelectorAll(".decrease-btn").forEach((button) => {
+    button.addEventListener("click", () =>
+      changeQuantity(button.dataset.name, -1)
+    );
+  });
+}
+
+// Function to handle quantity changes
+// Function to handle quantity changes
+function changeQuantity(productName, amount) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // Find the index of the product in the cart
+  const productIndex = cart.findIndex((item) => item.name === productName);
+  if (productIndex !== -1) {
+    cart[productIndex].quantity += amount;
+
+    // Remove item if quantity becomes zero or less
+    if (cart[productIndex].quantity <= 0) {
+      cart.splice(productIndex, 1);
+    }
   }
 
+  // Save updated cart to localStorage
+  localStorage.setItem("cart", JSON.stringify(cart));
 
+  // Refresh the cart UI
+  updateCartDisplay();
+}
 
-  function setupFilters(products) {
-    document.getElementById("search-bar").addEventListener("input", (e) => {
-      const searchTerm = e.target.value.toLowerCase();
-      const filteredProducts = products.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm)
-      );
-      displayProducts(filteredProducts);
-    });
+// Show cart if redirected from product details page
+document.addEventListener("DOMContentLoaded", () => {
+  updateCartDisplay();
 
-    document.querySelectorAll(".filter-btn").forEach((button) => {
-      button.addEventListener("click", () => {
-        const category = button.dataset.category;
-        const filteredProducts =
-          category === "all"
-            ? products
-            : products.filter((product) => product.category === category);
-        displayProducts(filteredProducts);
-      });
-    });
+  // Check if URL has showCart parameter
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("showCart") === "true") {
+    document.getElementById("cart-container").style.display = "block";
+  }
+});
+
+// Function to add products to the cart
+function addToCart(product) {
+  const existingProduct = cart.find((item) => item.name === product.name);
+  if (existingProduct) {
+    existingProduct.quantity++;
+  } else {
+    cart.push({ ...product, quantity: 1 });
   }
 
-  // Cart Functionality
-  productsContainer.addEventListener("click", (e) => {
-    const addToCartButton = e.target.closest(".add-to-cart");
-    if (addToCartButton) {
-      const productId = addToCartButton.dataset.id;
-      addToCart(productId);
+  // Show cart when an item is added
+  document.getElementById("cart-container").style.display = "block";
+  updateCartDisplay();
+}
+
+// Function to display products
+function displayProducts(filteredProducts) {
+  const productsContainer = document.getElementById("products-container");
+  productsContainer.innerHTML = "";
+
+  filteredProducts.forEach((product) => {
+    const productCard = document.createElement("div");
+    productCard.classList.add("product-card");
+
+    productCard.innerHTML = `
+            <img src="${product.image}" alt="${
+      product.name
+    }" class="product-image"/>
+            <h3 class="product-name">${product.name}</h3>
+            <p class="product-price">€${product.price.toFixed(2)}</p>
+            <button class="view-details-btn">View Details</button>
+        `;
+
+    // Add event listener to the entire product card
+    productCard.addEventListener("click", () => {
+      const productDetailsURL = `product-details.html?name=${encodeURIComponent(
+        product.name
+      )}&image=${encodeURIComponent(
+        product.image
+      )}&description=${encodeURIComponent(
+        product.description
+      )}&price=${encodeURIComponent(product.price)}`;
+      window.location.href = productDetailsURL;
+    });
+
+    productsContainer.appendChild(productCard);
+  });
+}
+
+// Event listeners for category and search filters
+document.addEventListener("DOMContentLoaded", () => {
+  const searchBar = document.getElementById("search-bar");
+  const filterButtons = document.querySelectorAll(".filter-btn");
+
+  // Function to filter products by category
+  function filterProductsByCategory(category) {
+    const filteredProducts = products.filter((product) => {
+      if (category === "all") return true;
+      return product.category === category;
+    });
+    displayProducts(filteredProducts);
+  }
+
+  // Function to filter products by search query
+  function filterProductsBySearch(query) {
+    const filteredProducts = products.filter((product) =>
+      product.name.toLowerCase().includes(query.toLowerCase())
+    );
+    displayProducts(filteredProducts);
+  }
+
+  // Search bar functionality
+  searchBar.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      const searchQuery = e.target.value;
+      filterProductsBySearch(searchQuery);
     }
   });
 
-  function addToCart(id) {
-    const productData = products.find(p => p.id == id);
-    console.log(productData);
-    console.log(products);
-    let cartItem = cart.find((item) => item.id == id);
-    if (cartItem) {
-      cartItem.quantity++;
-    } else {
-      cart.push({ id: productData.id,
-                  name: productData.name,
-        price: productData.price,
-        image: productData.image,
-        quantity: 1 });
-    }
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartDisplay();
-    showCartPopup();
-  }
-
-  function updateCartDisplay() {
-    cartItemsContainer.innerHTML = "";
-    let total = 0;
-    cart.forEach((item) => {
-      const cartItem = document.createElement("li");
-      cartItem.classList.add("cart-item");
-      cartItem.innerHTML = `
-        <div class="cart-item-details">
-          <div class="cart-item-image">
-            <img src="${item.image}" alt="${item.name}" class="cart-thumbnail">
-          </div>
-          <div class="cart-item-info">
-            <span class="item-name">${item.name}</span>
-            <div class="item-controls">
-              <button class="quantity-btn" data-id="${item.id}" data-action="decrease">-</button>
-              <span class="item-quantity">${item.quantity}</span>
-              <button class="quantity-btn" data-id="${item.id}" data-action="increase">+</button>
-            </div>
-            <div class="item-price">
-              <span class="price-per-item">${item.price.toFixed(2)} €</span>
-              <span class="item-total">${(item.price * item.quantity).toFixed(2)} €</span>
-            </div>
-          </div>
-          <button class="remove-item" data-id="${item.id}">×</button>
-        </div>
-      `;
-      cartItemsContainer.appendChild(cartItem);
-      total += item.price * item.quantity; // Placeholder price, should be fetched from data
+  // Category filter buttons
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const category = e.target.getAttribute("data-category");
+      filterProductsByCategory(category);
     });
-    cartTotal.textContent = total.toFixed(2);
-    setupCartItemListeners();
-  }
-
-  function setupCartItemListeners() {
-    // Quantity adjustment buttons
-    document.querySelectorAll('.quantity-btn').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const id = e.target.dataset.id;
-            const action = e.target.dataset.action;
-            updateQuantity(id, action);
-        });
-    });
-
-    // Remove buttons
-    document.querySelectorAll('.remove-item').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const id = e.target.dataset.id;
-            removeFromCart(id);
-        });
-    });
-}
-
-function updateQuantity(id, action) {
-    const cartItem = cart.find(item => item.id == id);
-    if (!cartItem) return;
-
-    if (action === 'increase') {
-        cartItem.quantity++;
-    } else if (action === 'decrease') {
-        cartItem.quantity--;
-        if (cartItem.quantity <= 0) {
-            removeFromCart(id);
-            return;
-        }
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartDisplay();
-}
-
-function removeFromCart(id) {
-  cart = cart.filter(item => item.id != id);
-  localStorage.setItem('cart', JSON.stringify(cart));
-  updateCartDisplay();
-  
-  // If cart is empty, you might want to hide the popup
-  if (cart.length === 0) {
-      hideCartPopup();
-  }
-}
-
-  function showCartPopup() {
-    cartPopup.classList.add("visible");
-    document.body.classList.add("overlay-active");
-  }
-
-  function hideCartPopup() {
-    cartPopup.classList.remove("visible");
-    document.body.classList.remove("overlay-active");
-  }
-
-  cartButton.addEventListener("click", showCartPopup);
-  closeCartButton.addEventListener("click", hideCartPopup);
-  document.addEventListener("click", (e) => {
-    if (e.target === cartPopup) hideCartPopup();
   });
 
-  updateCartDisplay();
+  // Initial display of products
+  displayProducts(products);
+});
+
+// Cart button to toggle cart visibility
+const cartButton = document.getElementById("cart-button");
+const cartContainer = document.getElementById("cart-container");
+cartButton.addEventListener("click", () => {
+  cartContainer.style.display =
+    cartContainer.style.display === "none" ? "block" : "none";
+});
+
+// Close cart button
+document.getElementById("close-cart").addEventListener("click", () => {
+  cartContainer.style.display = "none";
+});
+
+// Category-specific header images
+const categoryImages = {
+  all: "assets/images/frontpage.jpg",
+  electronics: "assets/images/electronics.jpg",
+  clothing: "assets/images/accessories.jpg",
+  // Add more categories and images as needed
+};
+
+// Function to update the header image
+function updateHeaderImage(category) {
+  const headerImageDiv = document.querySelector(".frontpage-image");
+  if (categoryImages[category]) {
+    headerImageDiv.style.background = `url("${categoryImages[category]}") no-repeat center center`;
+    headerImageDiv.style.backgroundSize = "cover";
+  }
+}
+
+// Add event listeners to filter buttons
+document.querySelectorAll(".filter-btn").forEach((button) => {
+  button.addEventListener("click", (e) => {
+    const category = e.target.getAttribute("data-category");
+    updateHeaderImage(category);
+  });
 });

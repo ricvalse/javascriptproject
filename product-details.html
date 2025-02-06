@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7fc;
+        padding: 20px;
+      }
+      .product-details {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        background: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        text-align: center;
+      }
+      .product-details img {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        margin-bottom: 15px;
+      }
+      .product-details h2 {
+        margin-bottom: 10px;
+      }
+      .product-details p {
+        color: #555;
+      }
+      .add-to-cart-btn {
+        background-color: #ff9900;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        width: 100%;
+        transition: background 0.3s ease;
+      }
+      .add-to-cart-btn:hover {
+        background-color: #f57c00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="product-details">
+      <img id="product-image" src="" alt="Product Image" />
+      <h2 id="product-name"></h2>
+      <p id="product-description"></p>
+      <p class="text-warning font-weight-bold">
+        Price: €<span id="product-price"></span>
+      </p>
+      <button class="add-to-cart-btn">Add to Cart</button>
+    </div>
+
+    <script>
+      // Extract product details from the URL
+      const params = new URLSearchParams(window.location.search);
+      const product = {
+        name: params.get("name"),
+        image: params.get("image"),
+        description: params.get("description"),
+        price: parseFloat(params.get("price")),
+        quantity: 1,
+      };
+
+      // Populate the product details page
+      document.getElementById("product-image").src = product.image;
+      document.getElementById("product-name").textContent = product.name;
+      document.getElementById("product-description").textContent =
+        product.description;
+      document.getElementById("product-price").textContent =
+        product.price.toFixed(2);
+
+      // Function to add to cart and redirect back
+      document
+        .querySelector(".add-to-cart-btn")
+        .addEventListener("click", () => {
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+          // Check if product already exists in cart
+          const existingProduct = cart.find(
+            (item) => item.name === product.name
+          );
+          if (existingProduct) {
+            existingProduct.quantity += 1;
+          } else {
+            cart.push(product);
+          }
+
+          // Save updated cart to localStorage
+          localStorage.setItem("cart", JSON.stringify(cart));
+
+          // Redirect back to products page with cart visible
+          window.location.href = "index.html?showCart=true";
+        });
+    </script>
+  </body>
+</html>
