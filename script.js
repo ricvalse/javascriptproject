@@ -120,8 +120,12 @@ function displayProducts(filteredProducts) {
       product.name
     }" class="product-image"/>
             <h3 class="product-name">${product.name}</h3>
-            <p class="product-price">€${product.price.toFixed(2)}</p>
-            <button class="view-details-btn">View Details</button>
+            <div class="price_btn">
+              <p class="product-price">${product.price
+                .toString()
+                .replace(".", ",")} €</p>
+              <button class="view-details-btn"><span class="material-symbols-outlined">shopping_bag_speed</span></button>
+            </div>
         `;
 
     // Add event listener to the entire product card
