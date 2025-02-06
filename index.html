@@ -12,6 +12,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
     <!-- <style>
       
@@ -32,12 +36,16 @@
 
     <main>
       <section id="filters">
-        <input type="text" id="search-bar" placeholder="Search products..." />
-        <button class="filter-btn" data-category="all">All</button>
-        <button class="filter-btn" data-category="electronics">
-          Electronics
-        </button>
-        <button class="filter-btn" data-category="clothing">Clothing</button>
+        <div>
+          <input type="text" id="search-bar" placeholder="Search products..." />
+        </div>
+        <div>
+          <button class="filter-btn" data-category="all">All</button>
+          <button class="filter-btn" data-category="electronics">
+            Electronics
+          </button>
+          <button class="filter-btn" data-category="clothing">Clothing</button>
+        </div>
       </section>
 
       <section id="products-container">
