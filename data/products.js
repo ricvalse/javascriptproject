@@ -7,7 +7,7 @@ const products = [
     category: "football",
     inventory: 10,
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Dominate the field with the United Mercurial Superfly 10, designed for explosive speed and superior grip. The lightweight construction and dynamic fit collar ensure unparalleled performance and comfort.",
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const products = [
     category: "football",
     inventory: 10,
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "The Phantom GX2 Elite offers precision control and a sleek design for the ultimate playmaker. With advanced traction and a snug fit, these boots will elevate your game.",
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const products = [
     category: "football",
     inventory: 10,
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "The Phantom Luna 2 Elite is crafted for creativity on the pitch, featuring an innovative design for maximum agility. Its premium upper material enhances ball control in every situation.",
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const products = [
     category: "football",
     inventory: 10,
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Step up your speed with the Mercurial Vapor 16 Pro, engineered for explosive acceleration. The bold colorway matches its dynamic performance.",
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ const products = [
     category: "sneakers",
     inventory: 10,
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "The Nike SB Dunk Low Pro combines retro style with skate-ready durability. Its padded tongue and Zoom Air cushioning ensure comfort and protection during every trick.",
   },
   {
     id: 6,
@@ -57,7 +57,7 @@ const products = [
     category: "sneakers",
     inventory: 10,
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "The Nike SB FC Classic is a timeless design that blends casual vibes with skate functionality. Its suede upper and gum outsole provide premium grip and style.",
   },
   {
     id: 7,
@@ -67,7 +67,7 @@ const products = [
     category: "sneakers",
     inventory: 10,
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Minimalist yet iconic, the Nike SB Zoom Janoski is built for both skating and everyday wear. Its lightweight Zoom Air cushioning delivers unbeatable comfort.",
   },
   {
     id: 8,
@@ -77,7 +77,7 @@ const products = [
     category: "sneakers",
     inventory: 10,
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "The Nike SB Zoom Blazer Mid reinvents a classic with modern skate performance. Its high-top design offers support, while the Zoom Air unit ensures responsive impact protection.",
   },
   {
     id: 9,
@@ -87,7 +87,7 @@ const products = [
     category: "running",
     inventory: 10,
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Designed for long runs, the Nike Pegasus 41 features responsive cushioning and a breathable mesh upper. Its versatile style makes it perfect for training or casual wear.",
   },
   {
     id: 10,
@@ -97,7 +97,7 @@ const products = [
     category: "running",
     inventory: 10,
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Break your personal best with the Nike Vaporfly 5, equipped with cutting-edge foam and a carbon fiber plate. This shoe delivers unmatched energy return for elite runners.",
   },
 ];
 
