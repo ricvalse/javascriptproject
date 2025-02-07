@@ -51,8 +51,9 @@
         margin-top: 20px;
       }
       .checkout-btn {
-        background-color: #ff9900;
+        background-color: green;
         color: white;
+        font-weight: 700;
         padding: 10px 20px;
         border: none;
         cursor: pointer;
@@ -61,13 +62,13 @@
         border-radius: 5px;
       }
       .checkout-btn:hover {
-        background-color: #f57c00;
+        background-color: rgb(2, 158, 2);
       }
       .back-btn {
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #007bff;
+        background-color: red;
         color: white;
         padding: 10px 15px;
         border: none;
@@ -80,7 +81,7 @@
         transition: background 0.3s ease;
       }
       .back-btn:hover {
-        background-color: #0056b3;
+        background-color: rgb(209, 0, 0);
       }
       .back-btn svg {
         margin-right: 8px;
@@ -92,25 +93,26 @@
       <h2>YOUR SHOPPING CART</h2>
       <div id="cart-items"></div>
       <div class="cart-total">Total: €<span id="cart-total">0.00</span></div>
-      <button class="checkout-btn">PROCEED TO CHECKOUT</button>
+      <a href="checkout_page.html"
+        ><button class="checkout-btn">PROCEED TO CHECKOUT</button></a
+      >
 
       <!-- Back Button -->
-      <a href="index.html" class="back-btn">
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-        BACK TO HOME
-      </a>
+      <a href="index.html"><button class="back-btn">BACK TO HOME</button></a>
     </div>
+
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
 
     <script>
       function loadCart() {

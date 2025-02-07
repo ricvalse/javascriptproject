@@ -201,9 +201,10 @@ document.getElementById("close-cart").addEventListener("click", () => {
 
 // Category-specific header images
 const categoryImages = {
-  all: "assets/images/frontpage.jpg",
-  electronics: "assets/images/electronics.jpg",
-  clothing: "assets/images/accessories.jpg",
+  all: "assets/images/wallpaperfront.png",
+  running: "assets/images/wallpaperrunning.png",
+  football: "assets/images/wallpaperfootball.png",
+  sneakers: "assets/images/wallpaperskateboard.png",
   // Add more categories and images as needed
 };
 
@@ -211,7 +212,7 @@ const categoryImages = {
 function updateHeaderImage(category) {
   const headerImageDiv = document.querySelector(".frontpage-image");
   if (categoryImages[category]) {
-    headerImageDiv.style.background = `url("${categoryImages[category]}") no-repeat center center`;
+    headerImageDiv.style.background = `url("${categoryImages[category]}") no-repeat center bottom`;
     headerImageDiv.style.backgroundSize = "cover";
   }
 }

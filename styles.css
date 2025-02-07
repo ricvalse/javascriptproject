@@ -15,7 +15,7 @@ header {
 }
 
 header img {
-  height: 30px;
+  height: 60px;
 }
 
 #cart-button {
@@ -28,7 +28,7 @@ header img {
   transition: background-color 0.3s ease;
   width: 60px;
   height: 40px;
-  border-radius: 100%;
+  border-radius: 7px;
   background-color: #f8f9fa;
   margin: 10px;
 }
@@ -41,12 +41,12 @@ header img {
 .frontpage-image {
   position: relative;
   width: 100vw;
-  background: url("assets/images/frontpage.jpg") no-repeat center center;
+  background: url("assets/images/wallpaperfront.png") no-repeat center center;
   background-size: cover;
-  background-position: center;
+  background-position: center bottom;
   left: 50%;
   transform: translateX(-50%);
-  height: 400px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -59,18 +59,20 @@ header img {
 }
 
 .frontbutton {
-  background-color: #ff9900;
-  color: white;
+  background-color: transparent;
+  color: black;
   padding: 12px 25px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid black;
   cursor: pointer;
   font-size: 1.2rem;
   transition: background-color 0.3s ease;
+  font-weight: 600;
 }
 
 .frontbutton:hover {
-  background-color: #f57c00;
+  background-color: black;
+  color: white;
 }
 
 #filters {
@@ -85,6 +87,7 @@ header img {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-right: 10px;
+  background-color: #f8f9fa;
 }
 
 .filter-btn {
@@ -269,7 +272,7 @@ footer a:hover {
 /* Cart Item Price */
 .cart-item-price {
   font-weight: bold;
-  color: #ff9900;
+  color: green;
   min-width: 70px; /* Ensures price stays aligned */
   text-align: right;
 }
@@ -284,9 +287,9 @@ footer a:hover {
 
 .checkout-btn {
   margin-top: 40px;
-  background: linear-gradient(135deg, #ff7e00, #ff9900);
-  color: white;
-  border: none;
+  background: transparent;
+  color: black;
+  border: 1px solid black;
   padding: 12px 20px;
   width: 100%;
   font-size: 1.2rem;
@@ -297,7 +300,8 @@ footer a:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .checkout-btn:hover {
-  background: linear-gradient(135deg, #ff6600, #ff8800);
+  background: black;
+  color: white;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
 }
@@ -327,5 +331,5 @@ footer a:hover {
 
 .cart-item-price {
   font-size: 1.1rem;
-  color: #ff9900;
+  color: green;
 }
